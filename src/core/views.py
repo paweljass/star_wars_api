@@ -15,7 +15,7 @@ class IndexView(TemplateView):
 
 
 def list_csv_files(request):
-    csv_folder_path = os.path.join(settings.MEDIA_ROOT, 'csv_files')  # Ustal pełną ścieżkę do folderu CSV
+    csv_folder_path = os.path.join(settings.MEDIA_ROOT, 'csv_files')
     csv_files = [f for f in os.listdir(csv_folder_path) if f.endswith('.csv')]
     context = {
         "data" : csv_files
