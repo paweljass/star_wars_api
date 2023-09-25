@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
+environ.Env.read_env()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -25,7 +28,7 @@ env = environ.Env()
 SECRET_KEY = 'django-insecure-#ic8zq&65^(^q!p0u^h8*fo8kd*#2j9-m(ts%6r6&*s-6tvfh#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = env.bool("DEBUG", default=True)
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -56,6 +60,9 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 STATICFILES_DIRS = [
     str(BASE_DIR / "static")
 ]
+
+MEDIA_URL = '/csv_files/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 TEMPLATES = [
     {
@@ -80,10 +87,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-POSTGRES_HOST = env("POSTGRES_HOST")
-POSTGRES_USER = env("POSTGRES_USER")
-POSTGRES_PASSWORD = env("POSTGRES_PASSWORD")
-POSTGRES_DB = env("POSTGRES_DB")
+POSTGRES_HOST = env("POSTGRES_HOST", default="localhost")
+POSTGRES_USER = env("POSTGRES_USER", default="pawel")
+POSTGRES_PASSWORD = env("POSTGRES_PASSWORD", default="")
+POSTGRES_DB = env("POSTGRES_DB", default="django_db")
 POSTGRES_PORT = env("POSTGRES_PORT", default="5432")
 
 DATABASES = {

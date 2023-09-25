@@ -21,13 +21,12 @@
                 <a class="navbar-brand" href="{% url 'index' %}"><b>Star Wars</b> Explorer</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Collections</a>
+                <a class="nav-link" href="{% url 'collections' %}">Collections</a>
             </li>
         </ul>
     </div>
 
 </nav>
 <div class="container mt-3">{% block content %}{% endblock content %}</div>
-
 </body>
 </html>

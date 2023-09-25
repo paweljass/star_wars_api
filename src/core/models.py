@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+class StarWarsData(models.Model):
+    filename = models.CharField()
+    data = models.JSONField()
+    download_date = models.DateTimeField(auto_now_add=True)
